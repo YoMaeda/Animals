@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -38,10 +38,10 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
             catch{
             }
         }
-        
-        //items.sort(by:{$0[0]<$1[0]}) //csvファイルから読み込んだ動物のデータを名前の五十音順に並べ替える
+
         items.reverse()
         
+        tableView.delegate=self
         tableView.dataSource=self
         
         searchBar.delegate=self
@@ -84,6 +84,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         searchBar.showsCancelButton=false
         searchBar.resignFirstResponder()
         
+        //ソートした結果がリセットされるのを防ぐ
         switch appDelegate.sortFlag{
         case 1:
             sort1()
@@ -142,6 +143,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         }, completion: {_ in
             self.sortMenuViewController.endAppearanceTransition()
         })
+        tableView.allowsSelection=false
         appear=1
     }
     
@@ -155,9 +157,11 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
             self.sortMenuViewController.view.isHidden = true
             self.sortMenuViewController.endAppearanceTransition()
         })
+        tableView.allowsSelection=true
         appear=0
     }
     
+    //サイドメニュー用の設定
     func set(ViewController:UIViewController){
         if let currentContentViewController = self.sortMenuViewController{
             guard type(of:currentContentViewController) != type(of:sortMenuViewController) else { return }
@@ -182,6 +186,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         })
     }
     
+    //サイドメニューボタンが押された時の処理
     @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
         if appear==0{
             self.presentMenuViewController()
@@ -189,15 +194,18 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         }
         else{
             self.dismissMenuViewController()
-            tableView.reloadData()
             sortButton.title="Sort"
         }
+        tableView.reloadData()
     }
     
     //データのソート用の関数
     func sort1(){ //名前の昇順
         appDelegate.searchResult?.sort(by:{$0[0]<$1[0]})
         appDelegate.sortFlag=1
+        
+        //appDelegate.searchResult=nil
+        //tableView.reloadData()
     }
     func sort2(){ //名前の降順
         appDelegate.searchResult?.sort(by:{$0[0]>$1[0]})

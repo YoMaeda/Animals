@@ -13,8 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var searchResult:[[String]]? = []
-    var sortFlag=0
+    var searchResult:[[String]]? = [] //検索結果を代入する配列
+    var sortFlag=0 //どのソートが実行されたかのフラグ
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

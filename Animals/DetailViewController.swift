@@ -20,23 +20,23 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //動物の説明文
         navigationItem.title=info[0]
         label.text=info[1]
-        
-        wikiButton.layer.borderWidth=2.0
-        wikiButton.layer.borderColor=UIColor.blue.cgColor
-    }
+        }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
+    //Wikipediaの該当ページへのリンク
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
         var url:URL
-        let wikiURL="http://ja.wikipedia.org/wiki/"+info[0]
-        let encodedURL=wikiURL.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)!
+        let wikiURL="http://ja.wikipedia.org/wiki/"+info[0] //動物名のURL
+        let encodedURL=wikiURL.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)! //wikiURLをエンコードしないとうまくリンクできない
         url=URL(string:encodedURL)!
         
+        //アプリ内でSafariを起動
         let safariViewController=SFSafariViewController(url:url)
         present(safariViewController,animated:false,completion:nil)
     }

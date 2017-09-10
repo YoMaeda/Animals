@@ -13,10 +13,12 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    //var sortMenuViewController:UIViewController!
+    private var sortMenuViewController:UIViewController!
+    var appear=0
     
     var items:[[String]]=[]
     var searchResult:[[String]]=[]
+    //var searchResult=UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,12 +111,11 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         return true
     }
     
-    //
-    /*
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.sortMenuViewController=self.storyboard?.instantiateViewController(withIdentifier:"sortMenu")
+        
         self.addChildViewController(self.sortMenuViewController)
         self.view.addSubview(self.sortMenuViewController.view)
         self.sortMenuViewController.didMove(toParentViewController:self)
@@ -123,6 +124,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         self.view.bringSubview(toFront:self.sortMenuViewController.view)
     }
     
+    //サイドメニューを開く処理
     func presentMenuViewController(){
         sortMenuViewController.beginAppearanceTransition(true, animated:true)
         self.sortMenuViewController.view.isHidden=false
@@ -135,6 +137,8 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         })
     }
     
+    
+    //サイドメニューを閉じる処理
     func dismissMenuViewController(){
         self.sortMenuViewController.beginAppearanceTransition(false, animated: true)
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
@@ -143,6 +147,51 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
             self.sortMenuViewController.view.isHidden = true
             self.sortMenuViewController.endAppearanceTransition()
         })
+    }
+    
+    func set(ViewController:UIViewController){
+        if let currentContentViewController = self.sortMenuViewController{
+            guard type(of:currentContentViewController) != type(of:sortMenuViewController) else { return }
+        }
+        
+        // 既存コンテンツの開放
+        self.sortMenuViewController.willMove(toParentViewController: nil)
+        self.sortMenuViewController.view.removeFromSuperview()
+        self.sortMenuViewController.removeFromParentViewController()
+        
+        // 新コンテンツのセット
+        //self.sortMenuViewController = sortMenuViewController
+        self.view.addSubview(sortMenuViewController.view)
+        self.view.bringSubview(toFront: self.sortMenuViewController.view)
+        self.addChildViewController(sortMenuViewController)
+        
+        // 新コンテンツフェードイン
+        sortMenuViewController.view.alpha = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            self.sortMenuViewController.view.alpha = 1
+        }, completion: { _ in
+            self.sortMenuViewController.didMove(toParentViewController: self)
+        })
+    }
+    
+    @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
+        if appear==0{
+            self.presentMenuViewController()
+            appear=1
+        }
+        else{
+            self.dismissMenuViewController()
+            appear=0
+        }
+    }
+    
+    func sort1(){
+        searchResult.sort(by:{$0[0]<$1[0]})
+        tableView.reloadData()
+        //print()
+    }
+    func sort2(){
+        searchResult.sort(by:{$0[0]>$1[0]})
     }
 }
 
@@ -158,6 +207,4 @@ extension UIViewController {
         }
         return nil
     }
- */
 }
-

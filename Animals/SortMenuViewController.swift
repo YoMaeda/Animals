@@ -9,5 +9,16 @@
 import UIKit
 
 class SortMenuViewController: UIViewController {
-   
+    
+    var item:[[String]]
+    
+    @IBAction func sort1ButtonTapped(_ sender: UIButton) {
+        let viewController = ViewController()
+        viewController.sort1()
+        print("aaa")
+    }
+    
+    @IBAction func sort2ButtonTapped(_ sender: UIButton) {
+        
+    }
 }

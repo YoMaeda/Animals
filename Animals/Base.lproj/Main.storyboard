@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" id="7me-tx-jmK">
                         <barButtonItem key="leftBarButtonItem" title="Sort" id="Nwv-pz-Sen">
                             <connections>
-                                <action selector="sortMenuButtonTapped:" destination="BYZ-38-t0r" id="F0P-aj-UUK"/>
+                                <action selector="sortButtonTapped:" destination="BYZ-38-t0r" id="NhX-yM-e3G"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -82,23 +82,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fQ-X2-BSB">
-                                <rect key="frame" x="281" y="105" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGy-pZ-u6Q">
-                                <rect key="frame" x="313" y="318" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ア→ン"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTp-IU-jvm">
-                                <rect key="frame" x="313" y="389" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-Rx-myt">
+                                <rect key="frame" x="263" y="407" width="46" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGy-pZ-u6Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="ア→ン"/>
+                                        <connections>
+                                            <action selector="sort1ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="KXY-z2-jmZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTp-IU-jvm">
+                                        <rect key="frame" x="0.0" y="30" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="sort2ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="bXn-eM-RbO"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="QHB-Rx-myt" secondAttribute="trailing" constant="50" id="heP-v2-NSZ"/>
+                            <constraint firstItem="mI1-y0-IXl" firstAttribute="top" secondItem="QHB-Rx-myt" secondAttribute="bottom" constant="200" id="we3-96-gY4"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6k5-1J-lwr" userLabel="First Responder" sceneMemberID="firstResponder"/>

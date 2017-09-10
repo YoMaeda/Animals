@@ -10,15 +10,18 @@ import UIKit
 
 class SortMenuViewController: UIViewController {
     
-    var item:[[String]]
+    //var item:[[String]]
+    
+    let viewController=ViewController()
     
     @IBAction func sort1ButtonTapped(_ sender: UIButton) {
-        let viewController = ViewController()
+        //let viewController = ViewController()
         viewController.sort1()
-        print("aaa")
+        //viewController.tableView.reloadData()
+        //print("aaa")
     }
     
     @IBAction func sort2ButtonTapped(_ sender: UIButton) {
-        
+        viewController.sort2()
     }
 }

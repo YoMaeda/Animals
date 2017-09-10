@@ -17,8 +17,8 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
     var appear=0
     
     var items:[[String]]=[]
-    var searchResult:[[String]]=[]
-    //var searchResult=UIApplication.shared.delegate as! AppDelegate
+    //var searchResult:[[String]]=[]
+    var appDelegate=UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,6 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
             }
         }
         
-        //
         //items.sort(by:{$0[0]<$1[0]}) //csvファイルから読み込んだ動物のデータを名前の五十音順に並べ替える
         items.reverse()
         
@@ -47,7 +46,8 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         
         searchBar.delegate=self
         searchBar.enablesReturnKeyAutomatically=false
-        searchResult=items
+        //searchResult=items
+        appDelegate.searchResult=items
         }
 
     override func didReceiveMemoryWarning() {
@@ -56,13 +56,15 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
 
     //データの個数を返す
     func tableView(_ tableView:UITableView,numberOfRowsInSection section:Int)->Int{
-        return searchResult.count
+        //return searchResult.count
+        return (appDelegate.searchResult?.count)!
     }
     
     //データを返す
     func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath)->UITableViewCell{
         let cell:UITableViewCell!=tableView.dequeueReusableCell(withIdentifier:"NameCell")
-        cell.textLabel?.text=searchResult[indexPath.row][0]
+        //cell.textLabel?.text=searchResult[indexPath.row][0]
+        cell.textLabel?.text=appDelegate.searchResult?[indexPath.row][0]
         return cell
     }
     
@@ -70,7 +72,8 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
     override func prepare(for segue:UIStoryboardSegue,sender:Any?){
         if let selectedRow=tableView.indexPathForSelectedRow{
             let controller=segue.destination as! DetailViewController
-            controller.info=searchResult[selectedRow.row]
+            //controller.info=searchResult[selectedRow.row]
+            controller.info=(appDelegate.searchResult?[selectedRow.row])!
         }
     }
     
@@ -84,21 +87,25 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         searchBar.text=""
         searchBar.showsCancelButton=false
         searchBar.resignFirstResponder()
-        searchResult=items
+        //searchResult=items
+        appDelegate.searchResult=items
         tableView.reloadData()
     }
     
     //テキストを変更した時の挙動
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchResult.removeAll()
+        //searchResult.removeAll()
+        appDelegate.searchResult?.removeAll()
         
         if searchBar.text==""{
-            searchResult=items //検索文字が未入力の時はすべてを表示
+            //searchResult=items //検索文字が未入力の時はすべてを表示
+            appDelegate.searchResult=items
         }
         else{
             for data in items{
                 if data[0].contains(searchBar.text!){
-                 searchResult.append(data)
+                 //searchResult.append(data)
+                    appDelegate.searchResult?.append(data)
                 }
             }
         }
@@ -182,16 +189,20 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         else{
             self.dismissMenuViewController()
             appear=0
+            tableView.reloadData()
         }
     }
     
     func sort1(){
-        searchResult.sort(by:{$0[0]<$1[0]})
-        tableView.reloadData()
-        //print()
+        //tableView.dataSource=self
+        //searchResult.sort(by:{$0[0]<$1[0]})
+        appDelegate.searchResult?.sort(by:{$0[0]<$1[0]})
+        //tableView.reloadData()
+        //print(appDelegate.searchResult?[0])
     }
     func sort2(){
-        searchResult.sort(by:{$0[0]>$1[0]})
+        //searchResult.sort(by:{$0[0]>$1[0]})
+        appDelegate.searchResult?.sort(by:{$0[0]>$1[0]})
     }
 }
 

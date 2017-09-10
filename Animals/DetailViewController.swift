@@ -31,7 +31,6 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    //アプリ内でSafariを開いてWikipediaの該当ページに飛ぶ
     @IBAction func wikiButtonTapped(_ sender: UIButton) {
         var url:URL
         let wikiURL="http://ja.wikipedia.org/wiki/"+info[0]

@@ -37,6 +37,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
             }
         }
         
+        //
         //items.sort(by:{$0[0]<$1[0]}) //csvファイルから読み込んだ動物のデータを名前の五十音順に並べ替える
         items.reverse()
         

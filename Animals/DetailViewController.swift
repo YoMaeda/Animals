@@ -15,14 +15,32 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var wikiButton: UIButton!
     
     var info:[String]=[]
+    var length:String=""
+    var weight:String=""
     let webView:UIWebView=UIWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //動物の説明文
+        //動物の名前
         navigationItem.title=info[0]
-        label.text=info[1]
+        
+        //動物の説明文
+        //体長
+        if Double(info[1])!>=100{ //1m以上→m単位
+            length=String(Double(info[1])!/100)+"m"
+        }
+        else{ //1m未満→cm単位
+            length=String(Double(info[1])!)+"cm"
+        }
+        //体重
+        if Double(info[2])!>=1000{ //1t以上→t単位
+            weight=String(Double(info[2])!/1000)+"t"
+        }
+        else{ //1t未満→kg単位
+            weight=String(Double(info[2])!)+"kg"
+        }
+        label.text="体長 : "+length+"\n\n"+"体重 : "+weight+"\n\n\n"+info[3]
         }
 
     override func didReceiveMemoryWarning() {

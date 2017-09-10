@@ -83,41 +83,100 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-Rx-myt">
-                                <rect key="frame" x="251" y="220" width="58" height="71"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ssD-0B-Hwg">
+                                <rect key="frame" x="251" y="170" width="58" height="215"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGy-pZ-u6Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="58" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="ア→ン">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sort1ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="KXY-z2-jmZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTp-IU-jvm">
-                                        <rect key="frame" x="0.0" y="36" width="58" height="35"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <state key="normal" title="ン→ア">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sort2ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="bXn-eM-RbO"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-Rx-myt">
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="71"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGy-pZ-u6Q">
+                                                <rect key="frame" x="0.0" y="0.0" width="58" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="ア→ン">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sort1ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="KXY-z2-jmZ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTp-IU-jvm">
+                                                <rect key="frame" x="0.0" y="36" width="58" height="35"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <state key="normal" title="ン→ア">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sort2ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="bXn-eM-RbO"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qfH-3x-hVE">
+                                        <rect key="frame" x="0.0" y="71" width="51" height="72"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Xz-Iq-L6a">
+                                                <rect key="frame" x="0.0" y="0.0" width="51" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Large">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sort3ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="OMZ-u0-T0h"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FHE-j9-a6V">
+                                                <rect key="frame" x="0.0" y="36" width="51" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Little">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sort4ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="UhR-wS-yRx"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WfJ-O8-lN8">
+                                        <rect key="frame" x="0.0" y="143" width="57" height="72"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPe-1b-bXa">
+                                                <rect key="frame" x="0.0" y="0.0" width="57" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Heavy">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sort5ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="bJh-7n-sXi"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpk-hr-BZO">
+                                                <rect key="frame" x="0.0" y="36" width="57" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Light">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sort6ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="jZf-9f-2VR"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="QHB-Rx-myt" secondAttribute="trailing" constant="50" id="d2p-DQ-wtc"/>
-                            <constraint firstItem="QHB-Rx-myt" firstAttribute="top" secondItem="3iW-BG-eu5" secondAttribute="bottom" constant="200" id="dLa-Yd-a4a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ssD-0B-Hwg" secondAttribute="trailing" constant="50" id="3Kc-2j-NZy"/>
+                            <constraint firstItem="ssD-0B-Hwg" firstAttribute="top" secondItem="3iW-BG-eu5" secondAttribute="bottom" constant="150" id="wll-fk-0FR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="sort1" destination="qGy-pZ-u6Q" id="KMS-sg-jv6"/>
                         <outlet property="sort2" destination="gTp-IU-jvm" id="EMp-2d-F30"/>
+                        <outlet property="sort3" destination="3Xz-Iq-L6a" id="UAm-05-ApY"/>
+                        <outlet property="sort4" destination="FHE-j9-a6V" id="VqL-Lj-uTS"/>
+                        <outlet property="sort5" destination="FPe-1b-bXa" id="mjj-RR-lkW"/>
+                        <outlet property="sort6" destination="Dpk-hr-BZO" id="OAL-r0-jBI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6k5-1J-lwr" userLabel="First Responder" sceneMemberID="firstResponder"/>

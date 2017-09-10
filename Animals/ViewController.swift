@@ -86,12 +86,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         //ソートした結果がリセットされるのを防ぐ
         switch appDelegate.sortFlag{
-        case 1:
-            sort1()
-        case 2:
-            sort2()
-        default:
-            appDelegate.searchResult=items
+            case 1:
+                sort1()
+            case 2:
+                sort2()
+            case 3:
+                sort3()
+            case 4:
+                sort4()
+            case 5:
+                sort5()
+            case 6:
+                sort6()
+            default:
+                appDelegate.searchResult=items
         }
         tableView.reloadData()
     }
@@ -134,13 +142,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     //サイドメニューを開く処理
     func presentMenuViewController(){
+        searchBar.endEditing(true)
         sortMenuViewController.beginAppearanceTransition(true, animated:true)
         self.sortMenuViewController.view.isHidden=false
         self.sortMenuViewController.view.frame=sortMenuViewController.view.frame.offsetBy(dx:-sortMenuViewController.view.frame.size.width,dy:0)
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.curveEaseOut, animations: {
-            let bounds = self.sortMenuViewController.view.bounds
-            self.sortMenuViewController.view.frame = CGRect(x:-bounds.size.width / 2, y:0, width:bounds.size.width, height:bounds.size.height)
-        }, completion: {_ in
+        UIView.animate(withDuration:0.3,delay:0,usingSpringWithDamping:0.8, initialSpringVelocity:0.3,options:UIViewAnimationOptions.curveEaseOut,animations:{
+            let bounds=self.sortMenuViewController.view.bounds
+            self.sortMenuViewController.view.frame=CGRect(x:-bounds.size.width/2, y:0,width:bounds.size.width,height:bounds.size.height)
+        },completion:{_ in
             self.sortMenuViewController.endAppearanceTransition()
         })
         tableView.allowsSelection=false
@@ -151,10 +160,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     //サイドメニューを閉じる処理
     func dismissMenuViewController(){
         self.sortMenuViewController.beginAppearanceTransition(false, animated: true)
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
-            self.sortMenuViewController.view.frame = self.sortMenuViewController.view.frame.offsetBy(dx: -self.sortMenuViewController.view.bounds.size.width / 2, dy: 0)
-        }, completion: {_ in
-            self.sortMenuViewController.view.isHidden = true
+        UIView.animate(withDuration:0.3,delay:0,options:.curveEaseOut, animations:{
+            self.sortMenuViewController.view.frame=self.sortMenuViewController.view.frame.offsetBy(dx:-self.sortMenuViewController.view.bounds.size.width/2,dy:0)
+        },completion:{_ in
+            self.sortMenuViewController.view.isHidden=true
             self.sortMenuViewController.endAppearanceTransition()
         })
         tableView.allowsSelection=true
@@ -174,20 +183,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         // 新コンテンツのセット
         self.view.addSubview(sortMenuViewController.view)
-        self.view.bringSubview(toFront: self.sortMenuViewController.view)
+        self.view.bringSubview(toFront:self.sortMenuViewController.view)
         self.addChildViewController(sortMenuViewController)
         
         // 新コンテンツフェードイン
-        sortMenuViewController.view.alpha = 0
-        UIView.animate(withDuration: 0.3, animations: {
-            self.sortMenuViewController.view.alpha = 1
+        sortMenuViewController.view.alpha=0
+        UIView.animate(withDuration:0.3,animations: {
+            self.sortMenuViewController.view.alpha=1
         }, completion: { _ in
-            self.sortMenuViewController.didMove(toParentViewController: self)
+            self.sortMenuViewController.didMove(toParentViewController:self)
         })
     }
     
     //サイドメニューボタンが押された時の処理
-    @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func sortButtonTapped(_ sender:UIBarButtonItem){
         if appear==0{
             self.presentMenuViewController()
             sortButton.title="Done"
@@ -203,25 +212,38 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func sort1(){ //名前の昇順
         appDelegate.searchResult?.sort(by:{$0[0]<$1[0]})
         appDelegate.sortFlag=1
-        
-        //appDelegate.searchResult=nil
-        //tableView.reloadData()
     }
     func sort2(){ //名前の降順
         appDelegate.searchResult?.sort(by:{$0[0]>$1[0]})
         appDelegate.sortFlag=2
     }
+    func sort3(){ //体長の長い順
+        appDelegate.searchResult?.sort(by:{Double($0[1])!>Double($1[1])!})
+        appDelegate.sortFlag=3
+    }
+    func sort4(){ //体長の短い順
+        appDelegate.searchResult?.sort(by:{Double($0[1])!<Double($1[1])!})
+        appDelegate.sortFlag=4
+    }
+    func sort5(){ //体重の重い順
+        appDelegate.searchResult?.sort(by:{Double($0[2])!>Double($1[2])!})
+        appDelegate.sortFlag=5
+    }
+    func sort6(){ //体長の短い順
+        appDelegate.searchResult?.sort(by:{Double($0[2])!<Double($1[2])!})
+        appDelegate.sortFlag=6
+    }
 }
 
 extension UIViewController {
     func sortMenuViewController() -> SortMenuViewController? {
-        var vc = self.parent
+        var vc=self.parent
         while(vc != nil){
-            guard let viewController = vc else { return nil }
+            guard let viewController=vc else { return nil }
             if viewController is SortMenuViewController {
                 return viewController as? SortMenuViewController
             }
-            vc = viewController.parent
+            vc=viewController.parent
         }
         return nil
     }

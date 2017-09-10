@@ -10,18 +10,32 @@ import UIKit
 
 class SortMenuViewController: UIViewController {
     
-    //var item:[[String]]
-    
+    @IBOutlet weak var sort1: UIButton!
+    @IBOutlet weak var sort2: UIButton!
     let viewController=ViewController()
     
-    @IBAction func sort1ButtonTapped(_ sender: UIButton) {
-        //let viewController = ViewController()
-        viewController.sort1()
-        //viewController.tableView.reloadData()
-        //print("aaa")
+    //ボタンが押されると強調され、他のボタンが押されるまで押せなくなる
+    func buttonPushed(button:UIButton){
+        button.isEnabled=false
+        button.setTitleColor(UIColor.black,for:.normal)
+    }
+    //他のボタンが押されると目立たなくなる
+    func buttonNotPushed(button:UIButton){
+        button.isEnabled=true
+        button.setTitleColor(UIColor.gray,for:.normal)
     }
     
+    //名前の昇順にソート
+    @IBAction func sort1ButtonTapped(_ sender: UIButton) {
+        viewController.sort1()
+        buttonPushed(button:sort1)
+        buttonNotPushed(button:sort2)
+    }
+    
+    //名前の降順にソート
     @IBAction func sort2ButtonTapped(_ sender: UIButton) {
         viewController.sort2()
+        buttonPushed(button:sort2)
+        buttonNotPushed(button:sort1)
     }
 }

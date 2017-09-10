@@ -12,12 +12,12 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var sortButton: UIBarButtonItem!
     
     private var sortMenuViewController:UIViewController!
-    var appear=0
+    var appear=0 //サイドメニューが現れたかどうかを確認する変数
     
     var items:[[String]]=[]
-    //var searchResult:[[String]]=[]
     var appDelegate=UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -142,6 +142,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         }, completion: {_ in
             self.sortMenuViewController.endAppearanceTransition()
         })
+        appear=1
     }
     
     
@@ -154,6 +155,7 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
             self.sortMenuViewController.view.isHidden = true
             self.sortMenuViewController.endAppearanceTransition()
         })
+        appear=0
     }
     
     func set(ViewController:UIViewController){
@@ -167,7 +169,6 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         self.sortMenuViewController.removeFromParentViewController()
         
         // 新コンテンツのセット
-        //self.sortMenuViewController = sortMenuViewController
         self.view.addSubview(sortMenuViewController.view)
         self.view.bringSubview(toFront: self.sortMenuViewController.view)
         self.addChildViewController(sortMenuViewController)
@@ -184,24 +185,21 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
     @IBAction func sortButtonTapped(_ sender: UIBarButtonItem) {
         if appear==0{
             self.presentMenuViewController()
-            appear=1
+            sortButton.title="Done"
         }
         else{
             self.dismissMenuViewController()
-            appear=0
             tableView.reloadData()
+            sortButton.title="Sort"
         }
     }
     
-    func sort1(){
-        //tableView.dataSource=self
-        //searchResult.sort(by:{$0[0]<$1[0]})
+    //データのソート用の関数
+    func sort1(){ //名前の昇順
         appDelegate.searchResult?.sort(by:{$0[0]<$1[0]})
         //tableView.reloadData()
-        //print(appDelegate.searchResult?[0])
     }
-    func sort2(){
-        //searchResult.sort(by:{$0[0]>$1[0]})
+    func sort2(){ //名前の降順
         appDelegate.searchResult?.sort(by:{$0[0]>$1[0]})
     }
 }

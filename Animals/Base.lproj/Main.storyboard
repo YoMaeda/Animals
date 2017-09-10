@@ -31,11 +31,11 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NameCell" id="Vww-2i-IlG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NameCell" id="Vww-2i-IlG">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vww-2i-IlG" id="pbl-RN-572">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -63,6 +63,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="rQd-X6-9Ta" id="3R9-DL-SI5"/>
+                        <outlet property="sortButton" destination="Nwv-pz-Sen" id="1a0-9q-UmT"/>
                         <outlet property="tableView" destination="w2U-7s-znx" id="OdI-FW-JQP"/>
                     </connections>
                 </viewController>
@@ -83,18 +84,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-Rx-myt">
-                                <rect key="frame" x="263" y="407" width="46" height="60"/>
+                                <rect key="frame" x="251" y="220" width="58" height="71"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGy-pZ-u6Q">
-                                        <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-                                        <state key="normal" title="ア→ン"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="ア→ン">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="sort1ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="KXY-z2-jmZ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gTp-IU-jvm">
-                                        <rect key="frame" x="0.0" y="30" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                        <rect key="frame" x="0.0" y="36" width="58" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <state key="normal" title="ン→ア">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="sort2ButtonTapped:" destination="oXH-kP-4tG" eventType="touchUpInside" id="bXn-eM-RbO"/>
                                         </connections>
@@ -104,10 +111,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="QHB-Rx-myt" secondAttribute="trailing" constant="50" id="heP-v2-NSZ"/>
-                            <constraint firstItem="mI1-y0-IXl" firstAttribute="top" secondItem="QHB-Rx-myt" secondAttribute="bottom" constant="200" id="we3-96-gY4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QHB-Rx-myt" secondAttribute="trailing" constant="50" id="d2p-DQ-wtc"/>
+                            <constraint firstItem="QHB-Rx-myt" firstAttribute="top" secondItem="3iW-BG-eu5" secondAttribute="bottom" constant="200" id="dLa-Yd-a4a"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sort1" destination="qGy-pZ-u6Q" id="KMS-sg-jv6"/>
+                        <outlet property="sort2" destination="gTp-IU-jvm" id="EMp-2d-F30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6k5-1J-lwr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

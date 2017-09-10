@@ -46,7 +46,6 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         
         searchBar.delegate=self
         searchBar.enablesReturnKeyAutomatically=false
-        //searchResult=items
         appDelegate.searchResult=items
         }
 
@@ -56,14 +55,12 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
 
     //データの個数を返す
     func tableView(_ tableView:UITableView,numberOfRowsInSection section:Int)->Int{
-        //return searchResult.count
         return (appDelegate.searchResult?.count)!
     }
     
     //データを返す
     func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath)->UITableViewCell{
         let cell:UITableViewCell!=tableView.dequeueReusableCell(withIdentifier:"NameCell")
-        //cell.textLabel?.text=searchResult[indexPath.row][0]
         cell.textLabel?.text=appDelegate.searchResult?[indexPath.row][0]
         return cell
     }
@@ -72,7 +69,6 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
     override func prepare(for segue:UIStoryboardSegue,sender:Any?){
         if let selectedRow=tableView.indexPathForSelectedRow{
             let controller=segue.destination as! DetailViewController
-            //controller.info=searchResult[selectedRow.row]
             controller.info=(appDelegate.searchResult?[selectedRow.row])!
         }
     }
@@ -87,29 +83,33 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
         searchBar.text=""
         searchBar.showsCancelButton=false
         searchBar.resignFirstResponder()
-        //searchResult=items
-        appDelegate.searchResult=items
+        
+        switch appDelegate.sortFlag{
+        case 1:
+            sort1()
+        case 2:
+            sort2()
+        default:
+            appDelegate.searchResult=items
+        }
         tableView.reloadData()
     }
     
     //テキストを変更した時の挙動
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //searchResult.removeAll()
         appDelegate.searchResult?.removeAll()
         
         if searchBar.text==""{
-            //searchResult=items //検索文字が未入力の時はすべてを表示
-            appDelegate.searchResult=items
+            appDelegate.searchResult=items //検索文字が未入力の時はすべてを表示
         }
         else{
             for data in items{
                 if data[0].contains(searchBar.text!){
-                 //searchResult.append(data)
                     appDelegate.searchResult?.append(data)
                 }
             }
         }
-        
+
         tableView.reloadData() //表示データを再度読み込む
     }
    
@@ -197,10 +197,11 @@ class ViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate
     //データのソート用の関数
     func sort1(){ //名前の昇順
         appDelegate.searchResult?.sort(by:{$0[0]<$1[0]})
-        //tableView.reloadData()
+        appDelegate.sortFlag=1
     }
     func sort2(){ //名前の降順
         appDelegate.searchResult?.sort(by:{$0[0]>$1[0]})
+        appDelegate.sortFlag=2
     }
 }
 

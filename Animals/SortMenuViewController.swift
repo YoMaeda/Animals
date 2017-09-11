@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class SortMenuViewController: UIViewController {
     
@@ -20,9 +21,9 @@ class SortMenuViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor=GradientColor(UIGradientStyle.leftToRight,frame:view.frame,colors:[.flatWhite,.flatGreen,.green,.flatGreenDark,.flatForestGreen])
         
-        /*
-         //デフォルトは名前の五十音順
+        //デフォルトは名前の五十音順
         viewController.sort1()
         buttonPushed(button:sort1)
         buttonNotPushed(button:sort2)
@@ -30,7 +31,6 @@ class SortMenuViewController: UIViewController {
         buttonNotPushed(button:sort4)
         buttonNotPushed(button:sort5)
         buttonNotPushed(button:sort6)
-         */
     }
     
     //ボタンが押されると強調され、他のボタンが押されるまで押せなくなる
@@ -108,6 +108,5 @@ class SortMenuViewController: UIViewController {
         buttonNotPushed(button:sort3)
         buttonNotPushed(button:sort4)
         buttonNotPushed(button:sort5)
-
     }
 }

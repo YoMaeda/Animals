@@ -15,9 +15,13 @@
 		AF123FE31F64146900472CEE /* AnimalInfo.csv in Resources */ = {isa = PBXBuildFile; fileRef = AF123FE21F64146900472CEE /* AnimalInfo.csv */; };
 		AF123FE51F64165300472CEE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF123FE41F64165300472CEE /* DetailViewController.swift */; };
 		AF123FEF1F65077600472CEE /* SortMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF123FEE1F65077600472CEE /* SortMenuViewController.swift */; };
+		E8998AEFFBC723E77478AA4A /* Pods_Animals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A3FA11A5F606B17D7A2BCC2 /* Pods_Animals.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E1C9C4B6B11D2025A2672CC /* Pods-Animals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Animals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Animals/Pods-Animals.release.xcconfig"; sourceTree = "<group>"; };
+		3A3FA11A5F606B17D7A2BCC2 /* Pods_Animals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Animals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D4363F6D5C3515C513D2AE4 /* Pods-Animals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Animals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Animals/Pods-Animals.debug.xcconfig"; sourceTree = "<group>"; };
 		AF123FCD1F64142B00472CEE /* Animals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF123FD01F64142B00472CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF123FD21F64142B00472CEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,17 +39,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8998AEFFBC723E77478AA4A /* Pods_Animals.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7655FB59F51DBCC4885C4610 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7D4363F6D5C3515C513D2AE4 /* Pods-Animals.debug.xcconfig */,
+				0E1C9C4B6B11D2025A2672CC /* Pods-Animals.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AF123FC41F64142B00472CEE = {
 			isa = PBXGroup;
 			children = (
 				AF123FCF1F64142B00472CEE /* Animals */,
 				AF123FCE1F64142B00472CEE /* Products */,
+				7655FB59F51DBCC4885C4610 /* Pods */,
+				C9FEB3975D78E5901C6D61E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +89,14 @@
 			path = Animals;
 			sourceTree = "<group>";
 		};
+		C9FEB3975D78E5901C6D61E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A3FA11A5F606B17D7A2BCC2 /* Pods_Animals.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF123FDF1F64142B00472CEE /* Build configuration list for PBXNativeTarget "Animals" */;
 			buildPhases = (
+				8184A7264B3F8F85B3FE79E8 /* [CP] Check Pods Manifest.lock */,
 				AF123FC91F64142B00472CEE /* Sources */,
 				AF123FCA1F64142B00472CEE /* Frameworks */,
 				AF123FCB1F64142B00472CEE /* Resources */,
+				E14661647BC4A87E621884D0 /* [CP] Embed Pods Frameworks */,
+				90E5B7F14CCFB30A1C718009 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -105,6 +132,7 @@
 				TargetAttributes = {
 					AF123FCC1F64142B00472CEE = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6GB33U5J6X;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -140,6 +168,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8184A7264B3F8F85B3FE79E8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Animals-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90E5B7F14CCFB30A1C718009 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Animals/Pods-Animals-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E14661647BC4A87E621884D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Animals/Pods-Animals-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Animals/Pods-Animals-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AF123FC91F64142B00472CEE /* Sources */ = {
@@ -270,8 +352,10 @@
 		};
 		AF123FE01F64142B00472CEE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D4363F6D5C3515C513D2AE4 /* Pods-Animals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6GB33U5J6X;
 				INFOPLIST_FILE = Animals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.classmethod.Animals;
@@ -282,8 +366,10 @@
 		};
 		AF123FE11F64142B00472CEE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E1C9C4B6B11D2025A2672CC /* Pods-Animals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6GB33U5J6X;
 				INFOPLIST_FILE = Animals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.classmethod.Animals;

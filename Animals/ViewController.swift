@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate,UISearchBarDelegate{
 
@@ -23,6 +24,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UINavigationBar.appearance().backgroundColor=UIColor.flatSkyBlue
         navigationItem.title="Animals"
         
         //csvファイル"AnimalInfo.csv"から動物のデータを2次元配列に読み込む
@@ -42,16 +44,19 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
          AnimalInfo.csvでは以下のようにデータを書く
          名前,体長(cm単位),体重(kg単位),説明
          ※体長と体重はString型で記録されるため、ソートするときは以下のようにDouble型にキャストする
-         appDelegate.searchResult?.sort(by:{Double($0[1])!>Double($1[1])!})
+            appDelegate.searchResult?.sort(by:{Double($0[1])!>Double($1[1])!})
          */
-
-        items.reverse()
         
+        //tableView関連の設定
         tableView.delegate=self
         tableView.dataSource=self
+        tableView.backgroundColor=UIColor(gradientStyle:.leftToRight,withFrame:tableView.frame,andColors:[.flatGreen,.green,.flatForestGreen])
         
+        //searchBar関連の設定
         searchBar.delegate=self
         searchBar.enablesReturnKeyAutomatically=false
+        
+        //最初の検索結果をitems全体にする
         appDelegate.searchResult=items
         }
 
@@ -68,6 +73,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(_ tableView:UITableView,cellForRowAt indexPath:IndexPath)->UITableViewCell{
         let cell:UITableViewCell!=tableView.dequeueReusableCell(withIdentifier:"NameCell")
         cell.textLabel?.text=appDelegate.searchResult?[indexPath.row][0]
+        
+        //未選択のセルを透明にする
+        cell.backgroundColor=UIColor.clear
+        //選択されたセルに色を付ける
+        let cellSelectedBgView = UIView()
+        cellSelectedBgView.backgroundColor = UIColor(gradientStyle:.leftToRight,withFrame:view.frame,andColors:[.flatGreen,.flatForestGreen])
+        cell.selectedBackgroundView=cellSelectedBgView
+        
         return cell
     }
     
@@ -136,8 +149,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.sortMenuViewController=self.storyboard?.instantiateViewController(withIdentifier:"sortMenu")
+    self.sortMenuViewController=self.storyboard?.instantiateViewController(withIdentifier:"sortMenu")
         
         self.addChildViewController(self.sortMenuViewController)
         self.view.addSubview(self.sortMenuViewController.view)
@@ -159,7 +171,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         },completion:{_ in
             self.sortMenuViewController.endAppearanceTransition()
         })
-        tableView.allowsSelection=false
+        tableView.allowsSelection=false //サイドメニューを開いている間にセルを押しても反応させない
         appear=1
     }
     
@@ -173,7 +185,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             self.sortMenuViewController.view.isHidden=true
             self.sortMenuViewController.endAppearanceTransition()
         })
-        tableView.allowsSelection=true
+        tableView.allowsSelection=true //サイドメニューを閉じたらセルが反応するようにする
         appear=0
     }
     

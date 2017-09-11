@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import ChameleonFramework
 
 class DetailViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor=GradientColor(UIGradientStyle.topToBottom,frame:view.frame,colors:[.flatWhite,.flatGreen,.green,.flatForestGreen])
         
         //動物の名前
         navigationItem.title=info[0]
@@ -37,10 +39,10 @@ class DetailViewController: UIViewController {
         if Double(info[2])!>=1000{ //1t以上→t単位
             weight=String(Double(info[2])!/1000)+"t"
         }
-        else if Double(info[2])!<1{ //ikg未満→g単位
+        else if Double(info[2])!<1{ //1kg未満→g単位
             weight=String(Double(info[2])!*1000)+"g"
         }
-        else{ //1~1000kg→kg単位
+        else{ //1kg以上1000kg未満→kg単位
             weight=String(Double(info[2])!)+"kg"
         }
         label.text="体長 : "+length+"\n"+"体重 : "+weight+"\n\n\n"+info[3]
@@ -59,6 +61,7 @@ class DetailViewController: UIViewController {
         
         //アプリ内でSafariを起動
         let safariViewController=SFSafariViewController(url:url)
+        safariViewController.preferredBarTintColor=UIColor.flatGreen
         present(safariViewController,animated:false,completion:nil)
     }
 }

@@ -18,6 +18,21 @@ class SortMenuViewController: UIViewController {
     @IBOutlet weak var sort6: UIButton!
     let viewController=ViewController()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        /*
+         //デフォルトは名前の五十音順
+        viewController.sort1()
+        buttonPushed(button:sort1)
+        buttonNotPushed(button:sort2)
+        buttonNotPushed(button:sort3)
+        buttonNotPushed(button:sort4)
+        buttonNotPushed(button:sort5)
+        buttonNotPushed(button:sort6)
+         */
+    }
+    
     //ボタンが押されると強調され、他のボタンが押されるまで押せなくなる
     func buttonPushed(button:UIButton){
         button.isEnabled=false

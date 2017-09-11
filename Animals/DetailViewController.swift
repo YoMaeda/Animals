@@ -37,10 +37,13 @@ class DetailViewController: UIViewController {
         if Double(info[2])!>=1000{ //1t以上→t単位
             weight=String(Double(info[2])!/1000)+"t"
         }
-        else{ //1t未満→kg単位
+        else if Double(info[2])!<1{ //ikg未満→g単位
+            weight=String(Double(info[2])!*1000)+"g"
+        }
+        else{ //1~1000kg→kg単位
             weight=String(Double(info[2])!)+"kg"
         }
-        label.text="体長 : "+length+"\n\n"+"体重 : "+weight+"\n\n\n"+info[3]
+        label.text="体長 : "+length+"\n"+"体重 : "+weight+"\n\n\n"+info[3]
         }
 
     override func didReceiveMemoryWarning() {

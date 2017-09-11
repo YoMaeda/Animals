@@ -38,6 +38,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             catch{
             }
         }
+        /*
+         AnimalInfo.csvでは以下のようにデータを書く
+         名前,体長(cm単位),体重(kg単位),説明
+         ※体長と体重はString型で記録されるため、ソートするときは以下のようにDouble型にキャストする
+         appDelegate.searchResult?.sort(by:{Double($0[1])!>Double($1[1])!})
+         */
 
         items.reverse()
         
@@ -83,6 +89,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         searchBar.text=""
         searchBar.showsCancelButton=false
         searchBar.resignFirstResponder()
+        appDelegate.searchResult=items
         
         //ソートした結果がリセットされるのを防ぐ
         switch appDelegate.sortFlag{
@@ -99,7 +106,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             case 6:
                 sort6()
             default:
-                appDelegate.searchResult=items
+                appDelegate.sortFlag=0
         }
         tableView.reloadData()
     }
